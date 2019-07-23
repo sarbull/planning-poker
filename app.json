@@ -1,0 +1,9 @@
+{
+  "name": "Planning Poker",
+  "description": "Planning Poker App",
+  "repository": "https://github.com/sarbull/planning-poker",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
+
