@@ -1,0 +1,61 @@
+<template>
+</template>
+
+<style>
+</style>
+
+<script>
+  export default class HelloWorld extends HTMLElement {
+    constructor() {
+      super();
+
+      this.attachShadow( { mode: 'open' } );
+      this.shadowRoot.innerHTML = this.render();
+
+      this.addEventListener('click', this.onClick);
+    }
+
+    is() {
+      return 'hello-world';
+    }
+
+    static get observedAttributes() {
+      return ['age'];
+    }
+
+    connectedCallback() {}
+
+    disconnectedCallback() {
+      this.removeEventListener('click', this.onClick);
+    }
+
+    attributeChangedCallback(attr, oldVal, newVal) {
+      this.shadowRoot.innerHTML = this.render();
+    }
+
+    onClick() {
+      this.parentNode.removeChild(this);
+    }
+
+    render() {
+      return `
+        <style>
+          div {
+            background: red;
+            border-radius: 30px;
+            padding: 20px;
+            font-size: 20px;
+            text-align: center;
+            width: 300px;
+            margin: 0 auto;
+          }
+        </style>
+
+        <div id="hello">
+          <p>Hello, world! My name is <slot></slot>.</p>
+          <p>Age is: ${this.getAttribute('age')}</p>
+        </div>
+      `;
+    }
+  }
+</script>

@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Single file Web Components</title>
+  </head>
+  <body>
+    <button>Add new component instance</button>
+
+    <script src="loader.js"></script>
+
+    <script>
+      document.querySelector( 'button' ).addEventListener( 'click', () => {
+        loadComponent( 'components/hello-world.wc' ).then( ( component ) => {
+          document.body.insertAdjacentHTML( 'beforeend', '<hello-world age="12">Comandeer</hello-world>' );
+        });
+      });
+    </script>
+  </body>
+</html>

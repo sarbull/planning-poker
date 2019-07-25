@@ -1,8 +1,23 @@
-const express = require('express')
-const app = express()
-const PORT = process.env.PORT || 5000
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 5000;
+let server = null;
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(express.static('public'));
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+app.get('/', (req, res) => res.send('Hello World!'));
 
+let start = () => {
+  server = app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
+};
+
+let stop = () => {
+  server.close();
+};
+
+module.exports = {
+  start: start,
+  stop: stop,
+  getInstance: () => app,
+  getServer: () => server
+};
